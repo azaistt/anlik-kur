@@ -1,0 +1,4 @@
+httplocalhost8000index.html
+
+ her enstrümanın bandı, o andaki yönüne 
+(yukarı/yeşil veya aşağı/kırmızı) göre dinamik olarak değişmeli.
