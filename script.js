@@ -38,13 +38,18 @@ function setTrend(idBase, changePct) {
         if (ribbon) ribbon.className = 'ribbon'; // neutral
         return;
     }
+    
+    // Her değişimi göster - sürekli dinamik
     if (changePct >= 0) {
+        // Artış - yeşil
         arrow.className = 'arrow up';
         if (ribbon) ribbon.className = 'ribbon green';
     } else {
+        // Düşüş - kırmızı
         arrow.className = 'arrow down';
         if (ribbon) ribbon.className = 'ribbon red';
     }
+    
     const sign = changePct >= 0 ? '' : '';
     pct.textContent = `%${trPercent(Math.abs(changePct))}`;
 }
