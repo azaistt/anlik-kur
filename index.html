@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anlık Döviz ve Altın Kurları</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page">
+        <header class="title-bar">
+            <h1>Anlık Döviz ve Altın Kurları</h1>
+        </header>
+
+        <main class="dashboard">
+            <section class="row top">
+                <article class="card green gram" aria-label="Gram Altın">
+                    <div class="ribbon" id="ribbon-gram"><span>GRAM ALTIN</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-gram"></span>
+                            <span class="pct" id="pct-gram"></span>
+                        </div>
+                        <div class="value"><span id="val-gram"></span></div>
+                    </div>
+                </article>
+
+                <article class="card green ceyrek" aria-label="Çeyrek Altın">
+                    <div class="ribbon" id="ribbon-ceyrek"><span>ÇEYREK ALTIN</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-ceyrek"></span>
+                            <span class="pct" id="pct-ceyrek"></span>
+                        </div>
+                        <div class="value"><span id="val-ceyrek"></span></div>
+                    </div>
+                </article>
+
+                <article class="card green ons" aria-label="Altın Ons">
+                    <div class="ribbon" id="ribbon-ons"><span>ALTIN ONS</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-ons"></span>
+                            <span class="pct" id="pct-ons"></span>
+                        </div>
+                        <div class="value"><span id="val-ons"></span></div>
+                    </div>
+                </article>
+
+                <article class="card green gumus" aria-label="Gümüş Ons">
+                    <div class="ribbon" id="ribbon-gumus"><span>GÜMÜŞ (ONS)</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-gumus"></span>
+                            <span class="pct" id="pct-gumus"></span>
+                        </div>
+                        <div class="value"><span id="val-gumus"></span></div>
+                    </div>
+                </article>
+            </section>
+
+            <div class="divider">
+                <div class="divider-inner">DOLAR ENDEKSİ</div>
+                <div class="dxy-value" id="dxy-value"></div>
+            </div>
+
+            <section class="row bottom">
+                <article class="card red usdtry" aria-label="USD/TRY">
+                    <div class="ribbon" id="ribbon-usdtry"><span>USD/TRY</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-usdtry"></span>
+                            <span class="pct" id="pct-usdtry"></span>
+                        </div>
+                        <div class="value"><span id="val-usdtry"></span></div>
+                    </div>
+                </article>
+
+                <article class="card red eurtry" aria-label="EUR/TRY">
+                    <div class="ribbon" id="ribbon-eurtry"><span>EUR/TRY</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-eurtry"></span>
+                            <span class="pct" id="pct-eurtry"></span>
+                        </div>
+                        <div class="value"><span id="val-eurtry"></span></div>
+                    </div>
+                </article>
+
+                <article class="card red eurusd" aria-label="EUR/USD">
+                    <div class="ribbon" id="ribbon-eurusd"><span>EUR/USD</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-eurusd"></span>
+                            <span class="pct" id="pct-eurusd"></span>
+                        </div>
+                        <div class="value"><span id="val-eurusd"></span></div>
+                    </div>
+                </article>
+
+                <article class="card red gbptry" aria-label="GBP/TRY">
+                    <div class="ribbon" id="ribbon-gbptry"><span>GBP/TRY</span></div>
+                    <div class="content">
+                        <div class="trend">
+                            <span class="arrow" id="arrow-gbptry"></span>
+                            <span class="pct" id="pct-gbptry"></span>
+                        </div>
+                        <div class="value"><span id="val-gbptry"></span></div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="update-time">
+            <span id="last-update"></span>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<parameter name="filePath">e:\Anlık_kur_x\index.html
