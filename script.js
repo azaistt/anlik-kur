@@ -13,7 +13,8 @@ function toNumberTR(v) {
 }
 
 async function fetchYahooMeta(symbol) {
-    const response = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}`);
+    // Use Vercel serverless function as proxy to avoid CORS
+    const response = await fetch(`/api/rates?symbol=${symbol}`);
     const data = await response.json();
     const meta = data?.chart?.result?.[0]?.meta;
     if (!meta) return null;
