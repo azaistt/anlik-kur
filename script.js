@@ -35,7 +35,10 @@ function setTrend(idBase, changePct) {
     if (changePct === null || changePct === undefined || isNaN(changePct)) {
         arrow.className = 'arrow';
         pct.textContent = '';
-        if (ribbon) ribbon.className = 'ribbon'; // neutral
+        if (ribbon) {
+            ribbon.className = 'ribbon'; // neutral - default color
+            ribbon.classList.remove('green', 'red');
+        }
         return;
     }
     
@@ -43,11 +46,15 @@ function setTrend(idBase, changePct) {
     if (changePct >= 0) {
         // Artış - yeşil
         arrow.className = 'arrow up';
-        if (ribbon) ribbon.className = 'ribbon green';
+        if (ribbon) {
+            ribbon.className = 'ribbon green';
+        }
     } else {
         // Düşüş - kırmızı
         arrow.className = 'arrow down';
-        if (ribbon) ribbon.className = 'ribbon red';
+        if (ribbon) {
+            ribbon.className = 'ribbon red';
+        }
     }
     
     const sign = changePct >= 0 ? '' : '';
@@ -205,14 +212,62 @@ async function fetchRates() {
 
         // Snapshot: son durumu sakla
         const snapshot = {
-            gram: { pct: gramPct, val: gramSell, unit: 'TL', dir: document.getElementById('arrow-gram')?.className.includes('up') ? 'up' : document.getElementById('arrow-gram')?.className.includes('down') ? 'down' : null },
-            ceyrek: { pct: ceyrekPct, val: ceyrekSell, unit: 'TL', dir: document.getElementById('arrow-ceyrek')?.className.includes('up') ? 'up' : document.getElementById('arrow-ceyrek')?.className.includes('down') ? 'down' : null },
-            ons: { pct: xau?.changePct, val: xau?.price, unit: 'USD', dir: document.getElementById('arrow-ons')?.className.includes('up') ? 'up' : document.getElementById('arrow-ons')?.className.includes('down') ? 'down' : null },
-            gumus: { pct: xag?.changePct, val: xag?.price, unit: 'USD', dir: document.getElementById('arrow-gumus')?.className.includes('up') ? 'up' : document.getElementById('arrow-gumus')?.className.includes('down') ? 'down' : null },
-            usdtry: { pct: usdtry?.changePct, val: usdtry?.price, unit: 'TL', dir: document.getElementById('arrow-usdtry')?.className.includes('up') ? 'up' : document.getElementById('arrow-usdtry')?.className.includes('down') ? 'down' : null },
-            eurtry: { pct: eurtry?.changePct, val: eurtry?.price, unit: 'TL', dir: document.getElementById('arrow-eurtry')?.className.includes('up') ? 'up' : document.getElementById('arrow-eurtry')?.className.includes('down') ? 'down' : null },
-            eurusd: { pct: eurusd?.changePct, val: eurusd?.price, unit: 'USD', dir: document.getElementById('arrow-eurusd')?.className.includes('up') ? 'up' : document.getElementById('arrow-eurusd')?.className.includes('down') ? 'down' : null },
-            gbptry: { pct: gbptry?.changePct, val: gbptry?.price, unit: 'TL', dir: document.getElementById('arrow-gbptry')?.className.includes('up') ? 'up' : document.getElementById('arrow-gbptry')?.className.includes('down') ? 'down' : null },
+            gram: { 
+                pct: gramPct, 
+                val: gramSell, 
+                unit: 'TL', 
+                dir: document.getElementById('arrow-gram')?.className.includes('up') ? 'up' : document.getElementById('arrow-gram')?.className.includes('down') ? 'down' : null,
+                ribbonClass: gramPct >= 0 ? 'green' : gramPct < 0 ? 'red' : null
+            },
+            ceyrek: { 
+                pct: ceyrekPct, 
+                val: ceyrekSell, 
+                unit: 'TL', 
+                dir: document.getElementById('arrow-ceyrek')?.className.includes('up') ? 'up' : document.getElementById('arrow-ceyrek')?.className.includes('down') ? 'down' : null,
+                ribbonClass: ceyrekPct >= 0 ? 'green' : ceyrekPct < 0 ? 'red' : null
+            },
+            ons: { 
+                pct: xau?.changePct, 
+                val: xau?.price, 
+                unit: 'USD', 
+                dir: document.getElementById('arrow-ons')?.className.includes('up') ? 'up' : document.getElementById('arrow-ons')?.className.includes('down') ? 'down' : null,
+                ribbonClass: xau?.changePct >= 0 ? 'green' : xau?.changePct < 0 ? 'red' : null
+            },
+            gumus: { 
+                pct: xag?.changePct, 
+                val: xag?.price, 
+                unit: 'USD', 
+                dir: document.getElementById('arrow-gumus')?.className.includes('up') ? 'up' : document.getElementById('arrow-gumus')?.className.includes('down') ? 'down' : null,
+                ribbonClass: xag?.changePct >= 0 ? 'green' : xag?.changePct < 0 ? 'red' : null
+            },
+            usdtry: { 
+                pct: usdtry?.changePct, 
+                val: usdtry?.price, 
+                unit: 'TL', 
+                dir: document.getElementById('arrow-usdtry')?.className.includes('up') ? 'up' : document.getElementById('arrow-usdtry')?.className.includes('down') ? 'down' : null,
+                ribbonClass: usdtry?.changePct >= 0 ? 'green' : usdtry?.changePct < 0 ? 'red' : null
+            },
+            eurtry: { 
+                pct: eurtry?.changePct, 
+                val: eurtry?.price, 
+                unit: 'TL', 
+                dir: document.getElementById('arrow-eurtry')?.className.includes('up') ? 'up' : document.getElementById('arrow-eurtry')?.className.includes('down') ? 'down' : null,
+                ribbonClass: eurtry?.changePct >= 0 ? 'green' : eurtry?.changePct < 0 ? 'red' : null
+            },
+            eurusd: { 
+                pct: eurusd?.changePct, 
+                val: eurusd?.price, 
+                unit: 'USD', 
+                dir: document.getElementById('arrow-eurusd')?.className.includes('up') ? 'up' : document.getElementById('arrow-eurusd')?.className.includes('down') ? 'down' : null,
+                ribbonClass: eurusd?.changePct >= 0 ? 'green' : eurusd?.changePct < 0 ? 'red' : null
+            },
+            gbptry: { 
+                pct: gbptry?.changePct, 
+                val: gbptry?.price, 
+                unit: 'TL', 
+                dir: document.getElementById('arrow-gbptry')?.className.includes('up') ? 'up' : document.getElementById('arrow-gbptry')?.className.includes('down') ? 'down' : null,
+                ribbonClass: gbptry?.changePct >= 0 ? 'green' : gbptry?.changePct < 0 ? 'red' : null
+            },
             dxy: dxy?.price != null ? `${dxy.price.toFixed(2)}${dxy?.changePct != null ? ` (%${trPercent(Math.abs(dxy.changePct))})` : ''}` : ''
         };
         saveSnapshot(snapshot);
@@ -245,6 +300,11 @@ if (snap) {
         if (v.dir && document.getElementById(`arrow-${k}`)) {
             document.getElementById(`arrow-${k}`).className = `arrow ${v.dir}`;
         }
+        // Ribbon rengini de restore et
+        if (v.ribbonClass && document.getElementById(`ribbon-${k}`)) {
+            const ribbon = document.getElementById(`ribbon-${k}`);
+            ribbon.className = `ribbon ${v.ribbonClass}`;
+        }
     });
     if (snap.dxy) {
         const el = document.getElementById('dxy-value');
@@ -252,26 +312,6 @@ if (snap) {
     }
 }
 
+// Gerçek verileri çek ve sürekli güncelle
 fetchRates();
-setInterval(fetchRates, 300000);
-
-// Prefill demo values for visual testing before APIs return (enable with ?demo)
-if (typeof window !== 'undefined' && window.location.search.includes('demo')) (function prefillDemo(){
-    const demo = {
-        gram: { pct: 0.85, val: 2550.45, unit: 'TL', dir: 'up' },
-        ceyrek: { pct: 0.42, val: 4200.10, unit: 'TL', dir: 'up' },
-        ons: { pct: -0.15, val: 2372.35, unit: 'USD', dir: 'down' },
-        gumus: { pct: 0.30, val: 28.53, unit: 'USD', dir: 'up' },
-        usdtry: { pct: -0.12, val: 34.88, unit: 'TL', dir: 'down' },
-        eurtry: { pct: 0.05, val: 36.92, unit: 'TL', dir: 'up' },
-        eurusd: { pct: 0.08, val: 1.0725, unit: 'USD', dir: 'up' },
-        gbptry: { pct: -0.10, val: 42.10, unit: 'TL', dir: 'down' },
-    };
-    Object.entries(demo).forEach(([k, v]) => {
-        setTrend(k, v.pct);
-        setValue(k, v.val, v.unit);
-        const a = document.getElementById(`arrow-${k}`);
-        if (a) a.className = `arrow ${v.dir === 'up' ? 'up' : 'down'}`;
-    });
-    updateTimestamp();
-})();
+setInterval(fetchRates, 300000); // Her 5 dakikada bir güncelle
