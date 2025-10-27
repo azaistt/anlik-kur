@@ -314,4 +314,9 @@ if (snap) {
 
 // Gerçek verileri çek ve sürekli güncelle
 fetchRates();
-setInterval(fetchRates, 60000); // Her 1 dakikada bir güncelle (optimal frekans)
+setInterval(fetchRates, 30000); // Her 30 saniyede bir güncelle (hızlı güncelleme)
+
+// Otomatik sayfa yenileme - görsel tazelik için
+setInterval(() => {
+    location.reload();
+}, 5000); // 5 saniye - sayfa sürekli taze görünür
