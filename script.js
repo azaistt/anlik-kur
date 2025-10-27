@@ -314,4 +314,4 @@ if (snap) {
 
 // Gerçek verileri çek ve sürekli güncelle
 fetchRates();
-setInterval(fetchRates, 300000); // Her 5 dakikada bir güncelle
+setInterval(fetchRates, 60000); // Her 1 dakikada bir güncelle (optimal frekans)
